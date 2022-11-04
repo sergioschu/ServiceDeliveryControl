@@ -5,13 +5,17 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import ROUTES from "../../../src/config/routes";
 import ServiceDocumentsService from "../../../src/services/ServiceDocumentsService";
-import UserService from "../../src/services/UserService";
+import UserService from "../../../src/services/UserService";
 
 function EditServiceDocuments() {
   const router = useRouter();
   const { id } = router.query;
   const [serviceDocument, setServiceDocument] = useState(null);
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    UserService.getAll().then((data) => setUsers(data))
+  }, []);
 
   useEffect(() => {
     ServiceDocumentsService.getById(id).then((data) => {
@@ -33,10 +37,6 @@ function EditServiceDocuments() {
       toast.error(`Erro ao criar o documento: ${e.message}`)
     })
   }
-
-  useEffect(() => {
-    UserService.getAll().then((data) => setUsers(data))
-  }, []);
 
   if (!serviceDocument) return `Carregando...`
 
