@@ -59,11 +59,10 @@ function ServiceList() {
 
   return (
     <Container>
-      <Grid container mt={2}>
-        <Grid item xs={6}>
+      <Grid container mt={3}>
+        <Grid item xs={4.1}>
             <Typography variant="h4">Lista de Serviços</Typography>
-        </Grid>
-        <Grid item xs={6}>
+
           <p>
             <Link
               href={{
@@ -77,7 +76,7 @@ function ServiceList() {
           </p>
         </Grid>
         <Grid item xs={12}>
-          <table>
+          <table border={"2px"}>
             <thead>
               <tr>
                 <th>ID</th>
@@ -94,6 +93,8 @@ function ServiceList() {
                     <td>{service.name}</td>
                     <td>{service.created_at}</td>
                     <td>
+                      <tr>
+                      <td>
                       <Link
                         href={{
                           pathname: ROUTES.services.show,
@@ -106,6 +107,8 @@ function ServiceList() {
                           <VisibilityIcon fontSize="small" />
                         </Button>
                       </Link>
+                      </td>
+                      <td>
                       <Link
                         href={{
                           pathname: ROUTES.services.edit,
@@ -118,9 +121,13 @@ function ServiceList() {
                           <EditIcon fontSize="small" />
                         </Button>
                       </Link>
+                      </td>
+                      <td>
                       <Button variant="contained" color="error" size="small" onClick={() => deleteService(service)}>
                         <DeleteForeverIcon fontSize="small" />
                       </Button>
+                      </td>
+                      </tr>
                     </td>
                   </tr>
                 );

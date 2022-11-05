@@ -24,25 +24,40 @@ function NewService() {
 
   return (
     <>
-      <p>Tela de Cadastro de Serviço</p>
-      <p>
-        <Link
-          href={{
-            pathname: ROUTES.services.list,
-          }}
-        >
-          Cancelar
-        </Link>
-      </p>
+    
+      <p align="center">Tela de Cadastro de Serviços</p>
 
+      
       <form onSubmit={handleSubmit((data) => insertService(data))}>
-        <div className="field">
-          <label>Nome</label>
-          <input {...register("name", { required: true })} />
-          {errors.name && <p>name is required.</p>}
-        </div>
+        <table align="center" border={"1px"}>
+          <tr>
+            <td colSpan={2}>
+              <div className="field">
+                <label>Nome</label>
+                <input {...register("name", { required: true })} />
+                {errors.name && <p>name is required.</p>}
+              </div>
+            </td>
+          </tr>
 
-        <input type="submit" />
+          <tr>
+            <td>
+              <input type="submit"/>
+            </td>
+
+            <td>
+              <p>
+                <Link
+                  href={{
+                    pathname: ROUTES.services.list,
+                  }}
+                >
+                  Cancelar
+                </Link>
+              </p>
+            </td>
+          </tr> 
+        </table>
       </form>
     </>
   );

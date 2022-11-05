@@ -36,46 +36,63 @@ function NewServiceDocument() {
 
   return (
     <>
-      <p>Tela de Cadastro de Documento</p>
-      <p>
-        <Link
-          href={{
-            pathname: ROUTES.serviceDocuments.list,
-          }}
-        >
-          Cancelar
-        </Link>
-      </p>
+      <p align="center">Tela de Cadastro de Documento</p>
+
 
       <form onSubmit={handleSubmit((data) => insertServiceDocument(data))}>
+        <table align="center" border={"1px"}>
+          <tr>
+            <td colSpan={2}>
+              <div className="field">
+                <label>Prestador</label>
+                <select {...register("user_id", { pattern: /\d/ })}>
+                  <option>Selecione o prestador</option>
+                  {
+                    users.map((user) => {
+                      return <option key={user.id} value={user.id}>{user.name}</option>
+                    })
+                  }
+                </select>
+                {errors.user_id && <p>Prestador é obrigatório.</p>}
+              </div>
+            </td>
+          </tr>
 
-        <div className="field">
-          <label>Prestador</label>
-          <select {...register("user_id", { pattern: /\d/ })}>
-            <option>Selecione o prestador</option>
-            {
-              users.map((user) => {
-                return <option key={user.id} value={user.id}>{user.name}</option>
-              })
-            }
-          </select>
-          {errors.user_id && <p>Prestador é obrigatório.</p>}
-        </div>
+          <tr>
+            <td colSpan={2}>
+              <div className="field">
+                <label>Tomador </label>
+                <select {...register("tomador_id", { pattern: /\d/ })}>
+                  <option>Selecione o Tomador</option>
+                  {
+                    users.map((user) => {
+                      return <option key={user.id} value={user.id}>{user.name}</option>
+                    })
+                  }
+                </select>
+                {errors.user_id && <p>Tomador é obrigatório.</p>}
+              </div>
+            </td>
+          </tr>
 
-        <div className="field">
-          <label>Tomador</label>
-          <select {...register("tomador_id", { pattern: /\d/ })}>
-            <option>Selecione o Tomador</option>
-            {
-              users.map((user) => {
-                return <option key={user.id} value={user.id}>{user.name}</option>
-              })
-            }
-          </select>
-          {errors.user_id && <p>Tomador é obrigatório.</p>}
-        </div>
+          <tr>
+            <td>
+              <input type="submit" />
+            </td>
 
-        <input type="submit" />
+            <td>
+              <p>
+                <Link
+                  href={{
+                    pathname: ROUTES.serviceDocuments.list,
+                  }}
+                >
+                  Cancelar
+                </Link>
+              </p>
+            </td>
+          </tr>
+        </table>
       </form>
     </>
   );

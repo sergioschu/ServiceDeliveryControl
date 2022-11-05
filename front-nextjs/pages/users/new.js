@@ -24,37 +24,59 @@ function NewUser() {
 
   return (
     <>
-      <p>Tela de Cadastro de Usuários</p>
-      <p>
-        <Link
-          href={{
-            pathname: ROUTES.users.list,
-          }}
-        >
-          Cancelar
-        </Link>
-      </p>
+      <p align="center">Tela de Cadastro de Usuários</p>
+
 
       <form onSubmit={handleSubmit((data) => insertUser(data))}>
-        <div className="field">
-          <label>Nome</label>
-          <input {...register("name", { required: true })} />
-          {errors.name && <p>name is required.</p>}
-        </div>
+        <table align="center" border={"1px"}>
+          <tr>
+            <td colSpan={2}>
+              <div className="field">
+                <label>Nome</label>
+                <input {...register("name", { required: true })} />
+                {errors.name && <p>name is required.</p>}
+              </div>
+            </td>
+          </tr>
 
-        <div className="field">
-          <label>E-mail</label>
-          <input {...register("email", { required: true })} />
-          {errors.email && <p>email is required.</p>}
-        </div>
+          <tr>
+            <td colSpan={2}>
+              <div className="field">
+                <label>E-mail</label>
+                <input {...register("email", { required: true })} />
+                {errors.email && <p>email is required.</p>}
+              </div>
+            </td>
+          </tr>
 
-        <div className="field">
-          <label>Senha</label>
-          <input {...register("password_digest", { required: true })} />
-          {errors.password_digest && <p>Senha é obrigatória.</p>}
-        </div>
+          <tr>
+            <td colSpan={2}>
+              <div className="field">
+                <label>Senha</label>
+                <input {...register("password_digest", { required: true })} />
+                {errors.password_digest && <p>Senha é obrigatória.</p>}
+              </div>
+            </td>
+          </tr>  
 
-        <input type="submit" />
+          <tr>
+            <td>
+              <input type="submit" />
+            </td>
+
+            <td>
+              <p>
+                <Link
+                  href={{
+                    pathname: ROUTES.users.list,
+                  }}
+                >
+                  Cancelar
+                </Link>
+              </p>
+            </td>
+          </tr>
+        </table>
       </form>
     </>
   );

@@ -57,8 +57,7 @@ function UserList() {
       <Grid container mt={2}>
         <Grid item xs={6}>
           <Typography variant="h4">Lista de Usuários</Typography>
-        </Grid>
-        <Grid item xs={6}>
+
           <p>
             <Link
               href={{
@@ -72,7 +71,7 @@ function UserList() {
           </p>
         </Grid>
         <Grid item xs={12}>
-          <table>
+        <table border={"2px"}>
             <thead>
               <tr>
                 <th>ID</th>
@@ -91,33 +90,43 @@ function UserList() {
                     <td>{user.email}</td>
                     <td>{user.created_at}</td>
                     <td>
-                      <Link
-                        href={{
-                          pathname: ROUTES.users.show,
-                          query: {
-                            id: user.id,
-                          },
-                        }}
-                      >
-                        <Button variant="contained" size="small">
-                          <VisibilityIcon fontSize="small" />
-                        </Button>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: ROUTES.users.edit,
-                          query: {
-                            id: user.id,
-                          },
-                        }}
-                      >
-                        <Button variant="contained" color="warning" size="small">
-                          <EditIcon fontSize="small" />
-                        </Button>
-                      </Link>
-                      <Button variant="contained" color="error" size="small" onClick={() => deleteUser(user)}>
-                        <DeleteForeverIcon fontSize="small" />
-                      </Button>
+                      <tr>
+                        <td>
+                          <Link
+                            href={{
+                              pathname: ROUTES.users.show,
+                              query: {
+                                id: user.id,
+                              },
+                            }}
+                          >
+                            <Button variant="contained" size="small">
+                              <VisibilityIcon fontSize="small" />
+                            </Button>
+                          </Link>
+                        </td>
+
+                        <td>
+                          <Link
+                            href={{
+                              pathname: ROUTES.users.edit,
+                              query: {
+                                id: user.id,
+                              },
+                            }}
+                          >
+                            <Button variant="contained" color="warning" size="small">
+                              <EditIcon fontSize="small" />
+                            </Button>
+                          </Link>
+                        </td>
+
+                        <td>
+                          <Button variant="contained" color="error" size="small" onClick={() => deleteUser(user)}>
+                            <DeleteForeverIcon fontSize="small" />
+                          </Button>
+                        </td>
+                      </tr>
                     </td>
                   </tr>
                 );
