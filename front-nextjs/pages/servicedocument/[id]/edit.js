@@ -30,6 +30,10 @@ function EditServiceDocuments() {
   } = useForm();
 
   const updateServiceDocument = (serviceDocument) => {
+    if (serviceDocument.user_id === serviceDocument.tomador_id) {
+      toast.success(`Prestador e Tomador não pode se igual!`)
+      return;
+    }
     ServiceDocumentsService.update(id, serviceDocument).then((data) => {
       router.push(ROUTES.serviceDocuments.list)
       toast.success(`Documento criado com sucesso!`)
@@ -38,7 +42,7 @@ function EditServiceDocuments() {
     })
   }
 
-  if (!serviceDocument) return `Carregando...`
+  if (!serviceDocument || !users.length) return `Carregando...`
 
   return (
     <>
@@ -56,7 +60,7 @@ function EditServiceDocuments() {
       <form onSubmit={handleSubmit((data) => updateServiceDocument(data))}>
         <div className="field">
           <label>Prestador</label>
-          <select {...register("user_id", { pattern: /\d/ })} defaultValue={serviceDocument.user_id}>
+          <select {...register("user_id", { pattern: /\d/ })} defaultValue={serviceDocument.prestador.id}>
             <option>Selecione o prestador</option>
             {
               users.map((user) => {
@@ -69,7 +73,7 @@ function EditServiceDocuments() {
 
         <div className="field">
           <label>Tomador</label>
-          <select {...register("tomador_id", { pattern: /\d/ })} defaultValue={serviceDocument.tomador_id}>
+          <select {...register("tomador_id", { pattern: /\d/ })} defaultValue={serviceDocument.tomador.id}>
             <option>Selecione o Tomador</option>
             {
               users.map((user) => {

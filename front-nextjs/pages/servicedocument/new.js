@@ -18,6 +18,12 @@ function NewServiceDocument() {
   } = useForm();
 
   const insertServiceDocument = (serviceDocument) => {
+
+    if (serviceDocument.user_id === serviceDocument.tomador_id) {
+      toast.success(`Prestador e Tomador não pode se igual!`)
+      return;
+    }
+
     ServiceDocumentsService.create(serviceDocument).then((data) => {
       router.push(ROUTES.serviceDocuments.list)
       toast.success(`Documento criado com sucesso!`)
@@ -42,7 +48,7 @@ function NewServiceDocument() {
       </p>
 
       <form onSubmit={handleSubmit((data) => insertServiceDocument(data))}>
-        
+
         <div className="field">
           <label>Prestador</label>
           <select {...register("user_id", { pattern: /\d/ })}>

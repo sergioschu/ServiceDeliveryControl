@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 
 // Material Icons
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import PageviewIcon from '@mui/icons-material/Pageview';
 
 import ROUTES from "../src/config/routes";
 
@@ -22,7 +23,7 @@ export default function Home() {
             pathname: ROUTES.services.list,
           }}
         >
-          <Button variant="contained" color="success" size="small" startIcon={<DeleteForeverIcon fontSize="small" />}>
+          <Button variant="contained" color="success" size="small" startIcon={<PageviewIcon fontSize="small" />}>
             Serviços
           </Button>
         </Link>
@@ -33,7 +34,7 @@ export default function Home() {
             pathname: ROUTES.users.list,
           }}
         >
-          <Button variant="contained" color="success" size="small" startIcon={<DeleteForeverIcon fontSize="small" />}>
+          <Button variant="contained" color="success" size="small" startIcon={<PageviewIcon fontSize="small" />}>
             Usuários
           </Button>
         </Link>
@@ -44,7 +45,7 @@ export default function Home() {
             pathname: ROUTES.serviceDocuments.list,
           }}
         >
-          <Button variant="contained" color="success" size="small" startIcon={<DeleteForeverIcon fontSize="small" />}>
+          <Button variant="contained" color="success" size="small" startIcon={<PageviewIcon fontSize="small" />}>
             Lançar serviços
           </Button>
         </Link>

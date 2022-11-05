@@ -22,7 +22,7 @@ import useSWR from 'swr'
 function ServiceDocumentsList() {
   const [serviceDocuments, setServiceDocuments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const { data, error } = useSWR('servicedocuments', ServiceDocumentsService.getAll)
 
   const deleteServiceDocuments = (serviceDocument) => {
@@ -56,7 +56,7 @@ function ServiceDocumentsList() {
     <Container>
       <Grid container mt={2}>
         <Grid item xs={6}>
-          <Typography variant="h4">Lista de Documentos</Typography>
+            <Typography variant="h4">Lista de Documentos</Typography>
         </Grid>
         <Grid item xs={6}>
           <p>
